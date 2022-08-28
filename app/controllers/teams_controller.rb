@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team, only: %i[show edit update destroy]
+  before_action :forbid_edit_team, only: %i[edit update]
 
   def index
     @teams = Team.all
@@ -56,4 +57,11 @@ class TeamsController < ApplicationController
   def team_params
     params.fetch(:team, {}).permit %i[name icon icon_cache owner_id keep_team_id]
   end
+
+  def forbid_edit_team
+    unless @team.owner == current_user
+      redirect_to team_url(@team), notice: "編集する権限がありません"
+    end
+  end
+
 end
