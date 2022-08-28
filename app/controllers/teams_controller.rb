@@ -59,9 +59,7 @@ class TeamsController < ApplicationController
   end
 
   def forbid_edit_team
-    unless @team.owner == current_user
-      redirect_to team_url(@team), notice: "編集する権限がありません"
-    end
+    redirect_to team_url(@team), notice: I18n.t('views.messages.cannot_edit_the_team') unless @team.owner == current_user
   end
 
 end
