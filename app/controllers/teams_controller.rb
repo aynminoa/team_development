@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, only: %i[show edit update destroy]
+  before_action :set_team, only: %i[show edit update destroy, transfer]
   before_action :forbid_edit_team, only: %i[edit update]
 
   def index
@@ -42,6 +42,19 @@ class TeamsController < ApplicationController
   def destroy
     @team.destroy
     redirect_to teams_url, notice: I18n.t('views.messages.delete_team')
+  end
+
+  def transfer
+    new_leader = User.find_by(id: params[:new_leader_id])
+    if current_user == @team.owner && @team.owner_id != new_leader.id
+      @team.owner_id = new_leader.id
+      @team.update(team_params)
+      TeamMailer.team_mail(new_leader.email).deliver
+      redirect_to team_path(@team.id),
+      notice: 'リーダー権限を移動しました'
+    else
+      render :show
+    end
   end
 
   def dashboard
