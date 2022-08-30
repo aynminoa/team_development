@@ -225,6 +225,7 @@ ja:
       cannot_edit_the_team: 'チームを編集する権限がありません'
       update_profile: 'プロフィールを編集しました！'
       complete_registration: '登録完了'
+      complete_transferring: '権限移動完了'
       edit_article: '記事を編集する'
       input_title: '記事タイトルを入力してください'
       input_content: '内容を入力してください'
@@ -232,6 +233,7 @@ ja:
       comment_list: 'コメント一覧'
       post_comment: 'コメント投稿'
       initial_assign: 'あなたのアドレスが、DIVEINTOPOSTのチームにアサインされました！'
+      leader_assign: 'あなたのアドレスが、DIVEINTOPOSTのチームリーダーとしてアサインされました！'
       initial_password: '初期パスワード:'
       author: '投稿者'
       delete_comment: 'コメントを削除する'
@@ -261,6 +263,7 @@ ja:
       delete: '削除'
       create: '作成'
       invite: '招待'
+      transfer: '権限移動'
     top:
       line1: 'このアプリケーションは、チームごと、議題ごとに別れて'
       line2: '特定のイシュー（議題）をメンバーで見やすく共有するためのアプリケーションです'

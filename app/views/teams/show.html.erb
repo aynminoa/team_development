@@ -41,8 +41,11 @@
                     <tr>
                       <td><%= image_tag 'default.jpg', size: '40x40' %></td>
                       <td><%= assign.user.email %></td>
-                      <td><%= link_to I18n.t('views.button.delete'), team_assign_path(@team, assign), method: :delete, class: 'btn btn-sm btn-danger' %></td>
-                    </tr>
+                      <td><%= link_to I18n.t('views.button.delete'), team_assign_path(@team, assign), method: :delete, class: 'btn btn-sm btn-danger' %>
+                        <% if assign.user.email != @team.owner.email %>
+                        <%= link_to I18n.t('views.button.transfer'), transfer_team_path(@team.id, new_leader_id: assign.user_id), method: :patch, data: { confirm: 'リーダー権限を移動してよろしいですか?' }, class: 'btn btn-sm btn-warning' %>
+                      <% end %></td>
+                      </tr>
                   <% end %>
                 </tbody>
               </table>
