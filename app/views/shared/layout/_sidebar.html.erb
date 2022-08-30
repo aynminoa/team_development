@@ -37,6 +37,7 @@
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
+            <%= link_to 'Destroy', agenda, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-outline-light p-1" %>
             <ul class="nav nav-treeview" style="display: block;">
               <% agenda.articles.each do |article| %>
                 <li class="nav-item">
