@@ -49,7 +49,7 @@ class TeamsController < ApplicationController
     if current_user == @team.owner && @team.owner_id != new_leader.id
       @team.owner_id = new_leader.id
       @team.update(team_params)
-      TeamMailer.team_mail(new_leader.email).deliver
+      TeamMailer.team_mail(@team.name, new_leader.email).deliver
       redirect_to team_path(@team.id),
       notice: 'リーダー権限を移動しました'
     else
